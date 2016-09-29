@@ -10,7 +10,7 @@ Oscil       wave1;
 void setup()
 {
   background(0);
-  fullScreen();
+  fullScreen(P3D);
   noCursor();
   //size(500, 500);
   //smooth();
@@ -56,7 +56,7 @@ color lerpColor(color from, color to, float t)
   color(
     lerp(red(from), red(to), t)
     , lerp(green(from), green(to), t)
-    , lerp(blue(from), blue(to), t) //<>// //<>//
+    , lerp(blue(from), blue(to), t) //<>// //<>// //<>//
     );
 }
 
@@ -92,7 +92,7 @@ void draw()
     timer = TWO_PI - timer; //<>//
     //to = nextColor();
     //sides = (int) random(3, 10);
-  } 
+  }  //<>//
   */
 }
 

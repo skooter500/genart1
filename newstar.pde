@@ -53,12 +53,10 @@ void draw()
   if (theta >= TWO_PI)
   {
     theta = TWO_PI - theta;
-    to = nextColor();
-    sides = random
   }  
 }
 
-void drawStar(float cx, float cy, float radius, int points, color c)
+void drawStar(float cx, float cy, float radius, int points, color c) //<>//
 {
     float thetaInc = TWO_PI / (points * 2);
     float lastX;

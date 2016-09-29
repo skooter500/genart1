@@ -56,7 +56,7 @@ color lerpColor(color from, color to, float t)
   color(
     lerp(red(from), red(to), t)
     , lerp(green(from), green(to), t)
-    , lerp(blue(from), blue(to), t) //<>//
+    , lerp(blue(from), blue(to), t) //<>// //<>//
     );
 }
 
@@ -70,7 +70,6 @@ void draw()
   background(0);
   strokeWeight(20);
   float offset = 0 ;
-  println(noise(theta));
   float freq = map(noise(theta), 0.3f, 0.6f, 120, 200);
   wave.setFrequency(freq);
 

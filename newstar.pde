@@ -21,7 +21,7 @@ color nextColor()
 float cx, cy;
 color from;
 color to;
-float theta = (3.0f / 2.0f) * PI;
+float theta = 0;
 float speed = -0.05f;
 float timer = 0.0f;
 int sides = 8;
@@ -55,15 +55,8 @@ void draw()
   theta += speed;
   gOff += speed;
   timer += abs(speed);
-  println(theta);
-  /*if (timer >= TWO_PI) //<>//
-  {
-    timer = TWO_PI - timer; //<>//
-    //to = nextColor();
-    //sides = (int) random(3, 10);
-  } 
-  */
-}
+  println(theta);  
+} //<>//
 
 void drawStar(float cx, float cy, float radius, int points, color c)
 {

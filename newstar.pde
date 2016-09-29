@@ -1,15 +1,38 @@
+import ddf.minim.*;
+import ddf.minim.ugens.*;
+
+Minim       minim;
+AudioOutput out;
+Oscil       wave;
+Oscil       wave1;
+
+
 void setup()
 {
   background(0);
   fullScreen();
+  noCursor();
   //size(500, 500);
   //smooth();
   cx = width / 2;
   cy = height / 2;
   
-  from = color(0, 255, 255);
-  to = color(0, 0, 0);
+  from = color(0, 0, 0);
+  to = color(255, 255, 255);
   
+  minim = new Minim(this);
+  
+  // use the getLineOut method of the Minim object to get an AudioOutput object
+  out = minim.getLineOut();
+  
+  // create a sine wave Oscil, set to 440 Hz, at 0.5 amplitude
+  wave = new Oscil( 440, 0.5f, Waves.SINE );
+  wave1 = new Oscil( 440, 0.5f, Waves.SINE );
+  // patch the Oscil to the output
+  wave.patch( out );
+  wave1.patch( out );
+  //wave.setAmplitude(1);
+    
 }
 
 color nextColor()
@@ -21,10 +44,11 @@ float cx, cy;
 color from;
 color to;
 float theta = (3.0f / 2.0f) * PI;
-float speed = -0.1f;
+float speed = -0.01f;
 float timer = 0.0f;
-int sides = 8;
+int sides = 4;
 float gOff = 0;
+float rotSpeed = 0.1f;
 
 color lerpColor(color from, color to, float t)
 {
@@ -32,29 +56,38 @@ color lerpColor(color from, color to, float t)
   color(
     lerp(red(from), red(to), t)
     , lerp(green(from), green(to), t)
-    , lerp(blue(from), blue(to), t)
+    , lerp(blue(from), blue(to), t) //<>//
     );
 }
 
+float rot = 0;
 void draw()
 {
+  translate(cx, cy);  
+  
+  rotate(rot);
+  rot += 0.001f;
   background(0);
   strokeWeight(20);
   float offset = 0 ;
-  translate(cx, cy);  
+  println(noise(theta));
+  float freq = map(noise(theta), 0.3f, 0.6f, 120, 200);
+  wave.setFrequency(freq);
+
+  float freq1 = map(noise(theta), 0.3f, 0.6f, 200, 120);
+  wave1.setFrequency(freq1);
   for(float radius = 0 ; radius < width * 1.6 ; radius += 30)
   {
     offset += 0.1f;
-    float t = map(sin(theta + offset), -1.0f, 1.0f, 0.0f, 1.0f);
+    float t = map(noise(theta + offset), 0.2f, 0.7f, 0.0f, 1.0f);
     color col = lerpColor(from, to, t);
     color(map(sin(theta + offset), -1, 1, 0, 255), 0, 0);    
-    rotate(speed);  
+    rotate(rotSpeed);  
     drawStar(0, 0, radius, sides, col);
   }
   theta += speed;
   gOff += speed;
   timer += abs(speed);
-  println(theta);
   /*if (timer >= TWO_PI)
   {
     timer = TWO_PI - timer; //<>//

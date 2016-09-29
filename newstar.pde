@@ -2,6 +2,7 @@ void setup()
 {
   background(0);
   fullScreen();
+  noCursor();
   //size(500, 500);
   //smooth();
   cx = width / 2;
@@ -55,7 +56,7 @@ void draw()
   gOff += speed;
   timer += abs(speed);
   println(theta);
-  /*if (timer >= TWO_PI)
+  /*if (timer >= TWO_PI) //<>//
   {
     timer = TWO_PI - timer; //<>//
     //to = nextColor();

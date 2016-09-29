@@ -3,18 +3,18 @@ void setup()
   background(0);
   fullScreen();
   //size(500, 500);
-  smooth();
+  //smooth();
   cx = width / 2;
   cy = height / 2;
   
-  from = color(255, 0, 0);
-  to = color(0, 0, 255);
+  from = color(0, 255, 255);
+  to = color(0, 0, 0);
   
 }
 
 color nextColor()
 {
-  return color(random(0, 255), random(0, 255), random(0, 255));
+  return color(random(0, 255), random(0, 255), 0);
 }
 
 float cx, cy;
@@ -22,7 +22,10 @@ color from;
 color to;
 float theta = (3.0f / 2.0f) * PI;
 float speed = -0.1f;
-int sides = 5;
+float timer = 0.0f;
+int sides = 8;
+
+
 
 color lerpColor(color from, color to, float t)
 {
@@ -39,23 +42,24 @@ void draw()
   background(0);
   strokeWeight(20);
   float offset = 0 ;
-  for(float radius = 0 ; radius < width * 1.6 ; radius += 20)
+  for(float radius = 0 ; radius < width * 1.6 ; radius += 30)
   {
     offset += 0.1f;
     float t = map(sin(theta + offset), -1.0f, 1.0f, 0.0f, 1.0f);
     color col = lerpColor(from, to, t);
-    println(t);
     color(map(sin(theta + offset), -1, 1, 0, 255), 0, 0);
     drawStar(cx, cy, radius, sides, col);
   }
   theta += speed;
-  
-  if (theta >= TWO_PI)
+  timer += abs(speed);
+  println(theta);
+  /*if (timer >= TWO_PI)
   {
-    theta = TWO_PI - theta;
-    to = nextColor();
-    sides = random
-  }  
+    timer = TWO_PI - timer; //<>//
+    //to = nextColor();
+    //sides = (int) random(3, 10);
+  } 
+  */
 }
 
 void drawStar(float cx, float cy, float radius, int points, color c)

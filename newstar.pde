@@ -22,7 +22,7 @@ float cx, cy;
 color from;
 color to;
 float theta = (3.0f / 2.0f) * PI;
-float speed = -0.1f;
+float speed = -0.05f;
 float timer = 0.0f;
 int sides = 8;
 float gOff = 0;
@@ -43,13 +43,13 @@ void draw()
   strokeWeight(20);
   float offset = 0 ;
   translate(cx, cy);  
-  for(float radius = 0 ; radius < width * 1.6 ; radius += 30)
+  for(float radius = 0 ; radius < width * 1.6 ; radius += 35)
   {
     offset += 0.1f;
     float t = map(sin(theta + offset), -1.0f, 1.0f, 0.0f, 1.0f);
     color col = lerpColor(from, to, t);
     color(map(sin(theta + offset), -1, 1, 0, 255), 0, 0);    
-    rotate(speed);  
+    //rotate(speed);  
     drawStar(0, 0, radius, sides, col);
   }
   theta += speed;

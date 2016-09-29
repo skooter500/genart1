@@ -18,7 +18,7 @@ void setup()
   cy = height / 2;
   
   from = color(0, 0, 0);
-  to = color(255, 255, 255);
+  to = color(255, 0, 0);
   
   minim = new Minim(this);
   
@@ -30,7 +30,7 @@ void setup()
   wave1 = new Oscil( 440, 0.5f, Waves.SINE );
   // patch the Oscil to the output
   wave.patch( out );
-  wave1.patch( out );
+  //wave1.patch( out );
   //wave.setAmplitude(1);
     
 }
@@ -44,6 +44,7 @@ float cx, cy;
 color from;
 color to;
 float theta = (3.0f / 2.0f) * PI;
+float theta1 = (3.0f / 2.0f) * PI;
 float speed = -0.01f;
 float timer = 0.0f;
 int sides = 4;
@@ -55,8 +56,8 @@ color lerpColor(color from, color to, float t)
   return 
   color(
     lerp(red(from), red(to), t)
-    , lerp(green(from), green(to), t)
-    , lerp(blue(from), blue(to), t) //<>//
+    , lerp(green(from), green(to), t) //<>//
+    , lerp(blue(from), blue(to), t)
     );
 }
 
@@ -65,27 +66,29 @@ void draw()
 {
   translate(cx, cy);  
   
+  
   rotate(rot);
   rot += 0.001f;
   background(0);
   strokeWeight(20);
   float offset = 0 ;
   println(noise(theta));
-  float freq = map(noise(theta), 0.3f, 0.6f, 120, 200);
+  float freq = map(noise(theta/2), 0.3f, 0.6f, 100, 180);
   wave.setFrequency(freq);
 
-  float freq1 = map(noise(theta), 0.3f, 0.6f, 200, 120);
+  float freq1 = map(noise(theta1), 0.3f, 0.6f, 200, 100);
   wave1.setFrequency(freq1);
   for(float radius = 0 ; radius < width * 1.6 ; radius += 30)
   {
     offset += 0.1f;
-    float t = map(noise(theta + offset), 0.2f, 0.7f, 0.0f, 1.0f);
+    float t = map(noise(theta + offset), 0.2f, 0.8f, 0.0f, 1.0f);
     color col = lerpColor(from, to, t);
     color(map(sin(theta + offset), -1, 1, 0, 255), 0, 0);    
     rotate(rotSpeed);  
     drawStar(0, 0, radius, sides, col);
   }
   theta += speed;
+  theta1 += speed * 0.4;
   gOff += speed;
   timer += abs(speed);
   /*if (timer >= TWO_PI)

@@ -10,7 +10,7 @@ Oscil       wave1;
 void setup()
 {
   background(0);
-  fullScreen();
+  fullScreen(P3D);
   noCursor();
   //size(500, 500);
   //smooth();
@@ -77,7 +77,7 @@ void draw()
 
   float freq1 = map(noise(theta1), 0.3f, 0.7f, 200, 100);
   wave1.setFrequency(freq1);
-  for(float radius = 0 ; radius < width * 1.6 ; radius += 30)
+  for(float radius = 0 ; radius < width * 1.6 ; radius += 40)
   {
     offset += 0.1f;
     float t = map(noise(theta + offset), 0.2f, 0.8f, 0.0f, 1.0f);

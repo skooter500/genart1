@@ -44,7 +44,7 @@ float cx, cy;
 color from;
 color to;
 float theta = (3.0f / 2.0f) * PI;
-float speed = -0.01f;
+float speed = -0.0001f;
 float timer = 0.0f;
 int sides = 4;
 float gOff = 0;

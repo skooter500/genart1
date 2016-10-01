@@ -67,12 +67,12 @@ void draw()
   translate(cx, cy);  
   
   
-  rotate(rot);
+  //rotate(rot);
   rot += 0.001f;
   background(0);
   strokeWeight(20);
   float offset = 0 ;
-  float freq = map(noise(theta), 0.2f, 0.7f, 60, 180);
+  float freq = map(noise(theta), 0.2f, 0.6f, 60, 180);
   wave.setFrequency(freq);
 
   float freq1 = map(noise(theta1), 0.3f, 0.7f, 200, 100);
@@ -80,7 +80,7 @@ void draw()
   for(float radius = 0 ; radius < width * 1.6 ; radius += 40)
   {
     offset += 0.1f;
-    float t = map(noise(theta + offset), 0.2f, 0.8f, 0.0f, 1.0f);
+    float t = map(noise(theta + offset), 0.2f, 0.75f, 0.0f, 1.0f);
     color col = lerpColor(from, to, t);
     //color(map(sin(theta + offset), -1, 1, 0, 255), 0, 0);    
     rotate(rotSpeed);  

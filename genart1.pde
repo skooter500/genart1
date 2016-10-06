@@ -18,7 +18,7 @@ void setup()
   cy = height / 2;
   
   from = color(0, 0, 0);
-  to = color(255, 255, 255);
+  to = color(255, 255, 0);
   
   minim = new Minim(this);
   
@@ -44,7 +44,7 @@ float cx, cy;
 color from;
 color to;
 float theta = (3.0f / 2.0f) * PI;
-float speed = -0.0001f;
+float speed = -0.01f;
 float timer = 0.0f;
 int sides = 4;
 float gOff = 0;
@@ -65,7 +65,7 @@ void draw()
 {
   translate(cx, cy);  
   
-  rotate(rot);
+  //rotate(rot);
   rot += 0.001f;
   background(0);
   strokeWeight(20);
